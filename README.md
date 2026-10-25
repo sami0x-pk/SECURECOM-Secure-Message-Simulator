@@ -1,149 +1,104 @@
-# 🛡️ SECURECOM
-### Advanced Secure Message Simulator
+# SECURECOM — Secure Military-Style Message Simulator
 
-**SECURECOM** is a Python-based desktop application that demonstrates secure communication using **AES-256-GCM authenticated encryption**.
+**Developer:** Abdul Samad  
+**University:** Aror University of Art, Architecture, Design & Heritage, Sukkur  
+**Tagline:** *Encrypt. Transmit. Decrypt. Secure.*
 
-It features a military-inspired graphical interface designed to help students understand encryption, decryption, message integrity, and cybersecurity concepts.
+SECURECOM is an educational Python desktop application that simulates secure message exchange between fictional terminals. It demonstrates authenticated encryption and message-tampering detection in a local environment.
 
-> 🔐 **ENCRYPT. TRANSMIT. DECRYPT. SECURE.**
+> **Disclaimer:** This is a local educational prototype, not a real military communication system. It does not transmit messages over a network or provide operational security guarantees.
 
----
+## Features
 
-## 🚀 Key Features
+- Tkinter desktop GUI with a dark military-inspired theme
+- AES-256-GCM authenticated encryption
+- Authenticated sender/receiver metadata
+- Random nonce per encrypted message
+- Temporary session-key rotation and fingerprint display (the key itself is never shown)
+- Simulated ALPHA/BRAVO-style terminals
+- Save/load encrypted JSON packets and copy packets to clipboard
+- Tamper/wrong-key detection during authentication
+- Session audit log with CSV export
+- Jupyter Notebook cryptography demonstration
 
-- 🔐 **AES-256-GCM Encryption** — Protects message confidentiality and integrity.
-- 🖥️ **Advanced GUI** — Military-inspired dark-themed interface.
-- 📊 **Security Dashboard** — Displays session activity and security information.
-- 📤 **Message Encryption** — Converts plaintext messages into encrypted packets.
-- 📥 **Message Decryption** — Verifies and decrypts authenticated packets.
-- 🔑 **Session Key Rotation** — Generates new temporary encryption keys.
-- 🛡️ **Tamper Detection** — Detects modified or invalid encrypted messages.
-- 📋 **Security Audit Logs** — Records security events.
-- 💾 **Packet Management** — Save, load, and copy encrypted packets.
+## Files
 
----
-
-## 🛠️ Technologies Used
-
-| Technology | Purpose |
-|---|---|
-| Python | Main programming language |
-| Tkinter | Desktop GUI development |
-| Cryptography | AES-256-GCM encryption |
-| JSON | Encrypted packet representation |
-| CSV | Security audit export |
-| Jupyter Notebook | Cryptography demonstration |
-
----
-
-## ⚙️ Installation
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/sami0x-pk/SECURECOM-Secure-Message-Simulator.git
+```text
+SECURECOM_Advanced/
+├── app.py
+├── SECURECOM_Cryptography_Demo.ipynb
+├── requirements.txt
+├── Run_SECURECOM.bat
+└── README.md
 ```
 
-### 2. Open the project directory
+## Requirements
 
-```bash
-cd SECURECOM-Secure-Message-Simulator
+- Windows 10/11 (GUI)
+- Python 3.10+ recommended
+- Internet access only for installing the dependency
+
+## Run on Windows
+
+1. Extract the ZIP.
+2. Open a terminal in the extracted folder.
+3. Install dependency:
+
+   ```bash
+   python -m pip install -r requirements.txt
+   ```
+
+4. Start the app:
+
+   ```bash
+   python app.py
+   ```
+
+If `python` is not recognized, use your Python environment's full path, for example:
+
+```cmd
+"C:\Users\YOUR-WINDOWS-USER\.conda\envs\YOUR-ENV\python.exe" -m pip install -r requirements.txt
+"C:\Users\YOUR-WINDOWS-USER\.conda\envs\YOUR-ENV\python.exe" app.py
 ```
 
-### 3. Install dependencies
+Or double-click `Run_SECURECOM.bat` after reviewing the Python path in that file.
+
+## Jupyter Notebook
+
+Run:
 
 ```bash
-python -m pip install -r requirements.txt
+jupyter notebook
 ```
 
-### 4. Run the application
+Open `SECURECOM_Cryptography_Demo.ipynb` and run its cells in order.
 
-```bash
-python app.py
-```
+## Test checklist
 
-Windows users can also launch the application using `Run_SECURECOM.bat`.
+1. Enter a sample message and click **ENCRYPT & TRANSMIT**.
+2. Check that a JSON packet appears.
+3. Click **VERIFY & DECRYPT**; the original text should appear.
+4. Change one character in the received packet and verify again; authentication should fail.
+5. Rotate the session key and try the previous packet; decryption should fail.
+6. Export the session audit to CSV.
 
----
+## Security notes and limitations
 
-## 🔄 How SECURECOM Works
+- AES-GCM provides confidentiality and authentication when keys are managed properly.
+- The key is temporary and generated in memory at app launch; it is not persisted or exchanged between separate app installations.
+- A packet saved on disk cannot be decrypted after restarting the app unless the original key is still available (this prototype intentionally does not export keys).
+- This application has no user account system, network transport, key distribution, secure key storage, or live identity verification.
+- Audit events are kept in memory until exported or the application closes.
+- The app is a teaching aid, not a substitute for reviewed production cryptographic software.
 
-**Step 1 — Compose Message**
+## Technology stack
 
-The sender enters a message into the application.
+- Python
+- Tkinter / ttk
+- `cryptography` (AESGCM)
+- Jupyter Notebook
+- GitHub
 
-**Step 2 — Encrypt Message**
+## License
 
-SECURECOM encrypts the message using AES-256-GCM.
-
-**Step 3 — Simulate Transmission**
-
-The encrypted packet is delivered to the local receiver panel.
-
-**Step 4 — Verify and Decrypt**
-
-The receiver verifies the encrypted packet and decrypts the message using the active session key.
-
-**Step 5 — Security Audit**
-
-The application records relevant security events for monitoring and analysis.
-
----
-
-## 🔒 Security Concepts Demonstrated
-
-- Confidentiality
-- Data Integrity
-- Authenticated Encryption
-- Cryptographic Nonces
-- Session Key Management
-- Message Authentication
-- Tamper Detection
-
----
-
-## ⚠️ Project Limitations
-
-SECURECOM is an **educational cybersecurity simulator**.
-
-- It does not transmit messages over a real network.
-- It does not implement real military communication protocols.
-- Session keys are temporary and stored in application memory.
-- Previously saved packets cannot be decrypted after the original session key is lost.
-
-The project is intended for learning and demonstration purposes only.
-
----
-
-## 👨‍💻 Developer
-
-**Abdul Samad**
-
-🎓 **Aror University of Art, Architecture, Design & Heritage, Sukkur**
-
-💻 **Field:** Cybersecurity & Information Technology
-
-🔗 **GitHub:** [sami0x-pk](https://github.com/sami0x-pk)
-
----
-
-## 🎯 Future Improvements
-
-- Secure network-based communication
-- User authentication
-- Multi-user messaging
-- Encrypted message history
-- Additional security monitoring features
-- Improved desktop interface
-
----
-
-## 📜 Disclaimer
-
-This application is developed for educational purposes and cybersecurity awareness. It is not intended for operational military communication.
-
----
-
-### ⭐ SECURECOM — Secure Communication Through Cryptography
-
-**Developed by Abdul Samad | Aror University, Sukkur**
+For educational and demonstration use.
